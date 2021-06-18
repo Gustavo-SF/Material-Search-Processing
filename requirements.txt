@@ -1,0 +1,6 @@
+pyodbc
+pandas
+nltk
+editdistance
+numpy
+sklearn

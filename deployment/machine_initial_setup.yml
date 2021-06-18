@@ -1,0 +1,7 @@
+---
+- name: Initial setup & pipenv
+  hosts: all
+  become: yes
+
+  roles:
+    - role: setup_instance

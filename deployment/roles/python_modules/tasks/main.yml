@@ -1,0 +1,25 @@
+---
+- name: Git clone app repo to /home/
+  git:
+    repo: "https://github.com/Gustavo-SF/MS-VM-Processing.git"
+    dest: /home/ubuntu/{{ project_name }}/
+
+- name: Install requirements.txt
+  pip:
+    requirements: /home/ubuntu/{{ project_name }}/requirements.txt
+    virtualenv: /home/ubuntu/{{ project_name }}/venv
+    virtualenv_python: python3.6
+
+- name: Send the .env file
+  template:
+    src: env_template
+    dest: /home/ubuntu/{{ project_name }}/.env
+
+- name: Set up cron job
+  cron:
+    name: "Run material processing"
+    minute: 30
+    hour: 3
+    day: 2
+    job: "cd /home/ubuntu/{{ project_name }}; source $(xargs < .env); venv/bin/python main.py"
+    cron_file: /home/ubuntu/cron_file
