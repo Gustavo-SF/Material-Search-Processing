@@ -17,7 +17,8 @@ def fetch_azure_connection_string():
     logging.info("Loaded all secrets into memory")
     server = f"{secrets['SERVER_NAME']}.database.windows.net,1433"
 
-    con_str = textwrap.dedent(f'''
+    con_str = textwrap.dedent(
+        f"""
         Driver={DRIVER};
         Server={server};
         Database={secrets["DATABASE_NAME"]};
@@ -26,21 +27,22 @@ def fetch_azure_connection_string():
         Encrypt=yes;
         TrustServerCertificate=no;
         Connection Timeout=30;
-    ''')
+    """
+    )
     return con_str
-    
+
 
 class DB_Connection:
     def __init__(self):
         connection_string = self.secrets = fetch_azure_connection_string()
         print(connection_string)
-        self.cnxn : pyodbc.Connection = pyodbc.connect(connection_string)
-        self.crsr : pyodbc.Cursor = self.cnxn.cursor()
+        self.cnxn: pyodbc.Connection = pyodbc.connect(connection_string)
+        self.crsr: pyodbc.Cursor = self.cnxn.cursor()
 
     def get_data(self, sql_file):
         with open(sql_file) as f:
             sql_code = f.read()
-        
+
         return pd.read_sql(sql_code, self.cnxn)
 
     def run_query(self, sql_str=None, sql_file=None):
@@ -51,14 +53,11 @@ class DB_Connection:
                 sql_str = sql.read()
         self.crsr.execute(sql_str)
         return True
-    
+
     def load_data(self, df, table):
-        df.to_sql(
-            con=self.cnxn, name=table, if_exists="append", index=False
-        )
+        df.to_sql(con=self.cnxn, name=table, if_exists="append", index=False)
         return True
 
     def close(self):
         self.cnxn.close()
         return True
-        
