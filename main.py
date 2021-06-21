@@ -10,16 +10,23 @@ from connections.db_connection import DB_Connection
 from text_processing.cleaner import clean_text
 from text_processing.distance_calculator import dist_sentence
 
+BASE_DIR = os.path.dirname(os.path.realpath(__file__))
+logging.basicConfig(filename=f"{BASE_DIR}/logs/logger.log", filemode='a', level=logging.INFO)
+
 # Get data from SQL DB
 dbcon = DB_Connection()
 sqlfile = os.path.join("sql", "materials.sql")
 dataframe = dbcon.get_data(sql_file=sqlfile)
+
+logging.info("Dataframe loaded")
 
 # Transformations
 dataframe.replace("\s{2,}", "", regex=True, inplace=True)
 dataframe.replace({np.nan: None}, inplace=True)
 dataframe = dataframe[dataframe.MaterialType == "ZMAT"].copy()
 dataframe.drop(columns=["MaterialType"], inplace=True)
+
+logging.info("Transformation done")
 
 # Clean text
 dataframe["description_clean"] = dataframe["MaterialDescription"].apply(
@@ -31,7 +38,7 @@ dataframe.loc[
 data_unique = dataframe.drop_duplicates(subset="description_clean", keep="first").copy()
 
 # Creating distance matrix
-
+logging.info("Cleaning text done")
 
 def apply_leven_mp(i, data):
     """Multiprocessing function to apply sentence distance calculation."""
@@ -53,6 +60,8 @@ final_output = np.zeros((len(X), len(X)), dtype=np.int8)
 c_type_output = np.ctypeslib.as_ctypes(final_output)
 SHARED_ARRAY = sharedctypes.RawArray(c_type_output._type_, c_type_output)
 
+logging.info("Starting multiprocessing")
+
 pool = Pool(processes=cpu_count())
 args = [(i, X) for i in range(len(X))]
 pool.starmap(apply_leven_mp, args)
@@ -62,6 +71,8 @@ del SHARED_ARRAY
 del final_output
 
 # Processing distance matrix
+
+logging.info("Starting to process with KNN")
 
 FINAL_OUTPUT_MP += FINAL_OUTPUT_MP.T
 k_neighbors = np.zeros((len(FINAL_OUTPUT_MP), 10), dtype=np.int32)
@@ -94,7 +105,13 @@ dataframe = dataframe.merge(
     data_unique.iloc[:, 2:], how="inner", on="description_clean"
 )
 
+logging.info("Data is ready!")
+
 createtable_file = os.path.join("sql", "create_table.sql")
 dbcon.run_query(createtable_file)
 
+logging.info("Created new table")
+
 dbcon.load_data(dataframe, "MaterialProximity")
+
+logging.info("Loaded data into new table")
