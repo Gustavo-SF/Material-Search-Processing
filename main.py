@@ -108,7 +108,7 @@ dataframe = dataframe.merge(
 logging.info("Data is ready!")
 
 createtable_file = os.path.join("sql", "create_table.sql")
-dbcon.run_query(createtable_file)
+dbcon.run_query(sql_file=createtable_file)
 
 logging.info("Created new table")
 

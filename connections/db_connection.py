@@ -51,6 +51,7 @@ class DB_Connection:
             with open(sql_file, "r") as sql:
                 sql_str = sql.read()
         self.crsr.execute(sql_str)
+        self.cnxn.commit()
         logging.info("Executed query successfully")
         return True
 
