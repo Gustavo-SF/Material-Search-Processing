@@ -16,3 +16,7 @@
       - python3
       - virtualenv
       - python3-dev
+      - unixodbc-dev
+      - build-essential
+      - libssl-dev 
+      - libffi-dev
