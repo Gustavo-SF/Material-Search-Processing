@@ -35,14 +35,13 @@ def fetch_azure_connection_string():
 class DB_Connection:
     def __init__(self):
         connection_string = self.secrets = fetch_azure_connection_string()
-        print(connection_string)
         self.cnxn: pyodbc.Connection = pyodbc.connect(connection_string)
         self.crsr: pyodbc.Cursor = self.cnxn.cursor()
+        logging.info("Established connection with the DB")
 
     def get_data(self, sql_file):
         with open(sql_file) as f:
             sql_code = f.read()
-
         return pd.read_sql(sql_code, self.cnxn)
 
     def run_query(self, sql_str=None, sql_file=None):
@@ -52,12 +51,15 @@ class DB_Connection:
             with open(sql_file, "r") as sql:
                 sql_str = sql.read()
         self.crsr.execute(sql_str)
+        logging.info("Executed query successfully")
         return True
 
     def load_data(self, df, table):
         df.to_sql(con=self.cnxn, name=table, if_exists="append", index=False)
+        logging.info("Loaded data into SQL Server successfully")
         return True
 
     def close(self):
         self.cnxn.close()
+        logging.info("Closed conection successfully")
         return True

@@ -1,0 +1,6 @@
+INFO:root:Loaded all secrets into memory
+INFO:root:Established connection with the DB
+INFO:root:Dataframe loaded
+INFO:root:Transformation done
+INFO:root:Cleaning text done
+INFO:root:Starting multiprocessing

@@ -3,3 +3,7 @@
 
 # Environment
 Pipfile*
+venv/
+
+# Python files
+__pycache__
