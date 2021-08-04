@@ -3,6 +3,8 @@ import logging
 import textwrap
 import pyodbc
 import pandas as pd
+from urllib.parse import quote_plus
+import sqlalchemy
 
 SECRET_VARIABLES = ["SERVER_NAME", "DATABASE_NAME", "DB_LOGIN", "DB_PASSWORD"]
 DRIVER = "{ODBC Driver 17 for SQL Server}"
@@ -55,8 +57,12 @@ class DB_Connection:
         logging.info("Executed query successfully")
         return True
 
-    def load_data(self, df, table):
-        df.to_sql(con=self.cnxn, name=table, if_exists="append", index=False)
+    def load_data(self, df, table, schema):
+        con_str = quote_plus(self.secrets)
+        con_str = "mssql+pyodbc:///?odbc_connect={}".format(con_str)
+        sql_engine = sqlalchemy.create_engine(con_str)
+        con = sql_engine.connect()
+        df.to_sql(con=con, name=table, if_exists="append", index=False, schema=schema, method="multi")
         logging.info("Loaded data into SQL Server successfully")
         return True
 

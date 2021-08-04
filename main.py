@@ -105,6 +105,12 @@ dataframe = dataframe.merge(
     data_unique.iloc[:, 2:], how="inner", on="description_clean"
 )
 
+cols = ["MaterialID", "MaterialDescription", "CleanDescription",
+    "Prox_1", "Prox_2", "Prox_3", "Prox_4", "Prox_5",
+    "Prox_6", "Prox_7", "Prox_8", "Prox_9", "Prox_10"]
+
+dataframe.columns = cols
+dataframe.drop(columns=["MaterialDescription", "CleanDescription"], inplace=True)
 logging.info("Data is ready!")
 
 createtable_file = os.path.join("sql", "create_table.sql")
@@ -112,6 +118,6 @@ dbcon.run_query(sql_file=createtable_file)
 
 logging.info("Created new table")
 
-dbcon.load_data(dataframe, "MaterialProximity")
+dbcon.load_data(dataframe, "MaterialProximity", "PPP")
 
 logging.info("Loaded data into new table")
