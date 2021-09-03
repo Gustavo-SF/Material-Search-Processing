@@ -5,11 +5,16 @@ import argparse
 
 import pandas as pd
 import numpy as np
+import nltk
 
 from connections.db_connection import DB_Connection
 from text_processing.cleaner import clean_text
 from text_processing.distance_calculator import dist_sentence
 
+# Downloads needed for NLTK
+nltk.download("stopwords")
+nltk.download("averaged_perceptron_tagger")
+nltk.download("wordnet")
 
 BASE_DIR = os.path.dirname(os.path.realpath(__file__))
 logging.basicConfig(

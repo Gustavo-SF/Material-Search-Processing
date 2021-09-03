@@ -1,5 +1,5 @@
 ---
-- name: Initial setup & pipenv
+- name: Initial setup
   hosts: all
   become: yes
 
