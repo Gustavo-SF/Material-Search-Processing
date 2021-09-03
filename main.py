@@ -91,11 +91,13 @@ if not args.load_csv:
     FINAL_OUTPUT_MP += FINAL_OUTPUT_MP.T
     k_neighbors = np.zeros((len(FINAL_OUTPUT_MP), 10), dtype=np.int32)
     for i in range(len(FINAL_OUTPUT_MP)):
+        # Know when the material descriptions are completely different (value of 100)
         if (np.where((np.sort(FINAL_OUTPUT_MP[i])[0:11]) == 100)[0]).size != 0:
             end = np.where((np.sort(FINAL_OUTPUT_MP[i])[0:11]) == 100)[0][0]
         else:
             end = None
 
+        # Only keep the final indices at the end
         k_neighbors[i] = np.delete(
             np.argsort(FINAL_OUTPUT_MP[i])[0:11],
             np.where(np.argsort(FINAL_OUTPUT_MP[i])[0:11] == i),
@@ -105,6 +107,7 @@ if not args.load_csv:
 
     del FINAL_OUTPUT_MP
 
+    # Replace the indices by the material ids
     for i in range(len(k_neighbors)):
         k_neighbors[i][
             : len(np.delete(k_neighbors[i], np.where(k_neighbors[i] == -1)))
@@ -112,6 +115,7 @@ if not args.load_csv:
             data_unique.iloc[np.delete(k_neighbors[i], np.where(k_neighbors[i] == -1)), 0]
         )
 
+    # Add the rest of the material ids
     data_unique = pd.concat(
         [data_unique.reset_index(drop=True), pd.DataFrame(k_neighbors)], axis=1
     )
