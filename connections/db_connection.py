@@ -62,7 +62,7 @@ class DB_Connection:
         con_str = "mssql+pyodbc:///?odbc_connect={}".format(con_str)
         sql_engine = sqlalchemy.create_engine(con_str)
         con = sql_engine.connect()
-        df.to_sql(con=con, name=table, if_exists="append", index=False, schema=schema, method="multi")
+        df.to_sql(con=con, name=table, if_exists="append", index=False, schema=schema, method="multi", chunksize=100)
         logging.info("Loaded data into SQL Server successfully")
         return True
 

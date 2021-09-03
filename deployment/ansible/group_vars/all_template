@@ -1,0 +1,9 @@
+---
+# For setting up the db certs
+SERVER_NAME: <SEC1>
+DATABASE_NAME: <SEC2>
+DB_LOGIN: <SEC3>
+DB_PASSWORD: <SEC4>
+
+# Project specific
+project_name: PPP

@@ -18,7 +18,7 @@
 - name: Set up cron job
   cron:
     name: "Run material processing"
-    minute: "30"
-    hour: "3"
-    day: "2"
+    minute: "0"
+    hour: "18"
+    day: "3"
     job: "cd /home/mota-engil/{{ project_name }}; export $(xargs < .env); venv/bin/python main.py"

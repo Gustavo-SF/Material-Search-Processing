@@ -1,6 +1,22 @@
-INFO:root:Loaded all secrets into memory
-INFO:root:Established connection with the DB
-INFO:root:Dataframe loaded
-INFO:root:Transformation done
-INFO:root:Cleaning text done
-INFO:root:Starting multiprocessing
+
+INFO - 2021-09-03 15:03:48,566 - Data is ready!
+INFO - 2021-09-03 15:04:59,548 - Loaded all secrets into memory
+INFO - 2021-09-03 15:05:00,511 - Established connection with the DB
+INFO - 2021-09-03 15:05:00,527 - Data is ready!
+INFO - 2021-09-03 15:05:00,759 - Executed query successfully
+INFO - 2021-09-03 15:05:00,759 - Created new table
+INFO - 2021-09-03 15:06:37,846 - Loaded all secrets into memory
+INFO - 2021-09-03 15:06:38,897 - Established connection with the DB
+INFO - 2021-09-03 15:06:40,703 - Dataframe loaded
+INFO - 2021-09-03 15:06:40,735 - Transformation done
+INFO - 2021-09-03 15:06:51,134 - Loaded all secrets into memory
+INFO - 2021-09-03 15:06:52,148 - Established connection with the DB
+INFO - 2021-09-03 15:06:53,116 - Dataframe loaded
+INFO - 2021-09-03 15:06:53,126 - Transformation done
+INFO - 2021-09-03 15:07:20,611 - Loaded all secrets into memory
+INFO - 2021-09-03 15:07:26,606 - Established connection with the DB
+INFO - 2021-09-03 15:07:26,620 - Data is ready!
+INFO - 2021-09-03 15:07:26,789 - Executed query successfully
+INFO - 2021-09-03 15:07:26,790 - Created new table
+INFO - 2021-09-03 15:08:25,824 - Loaded data into SQL Server successfully
+INFO - 2021-09-03 15:08:25,824 - Loaded data into new table

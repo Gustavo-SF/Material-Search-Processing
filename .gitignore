@@ -1,5 +1,6 @@
 # secrets
 .env
+all
 
 # Environment
 Pipfile*
@@ -7,3 +8,6 @@ venv/
 
 # Python files
 __pycache__
+
+# Data
+material_proximity_data.csv

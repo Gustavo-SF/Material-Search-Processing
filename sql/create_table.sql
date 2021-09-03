@@ -1,15 +1,15 @@
-DROP TABLE IF EXISTS [PPP].[MaterialProximity];
-CREATE TABLE [PPP].[MaterialProximity] (
-    MaterialID VARCHAR(20) NOT NULL PRIMARY KEY,
-    Prox_1 VARCHAR(20),
-    Prox_2 VARCHAR(20),
-    Prox_3 VARCHAR(20),
-    Prox_4 VARCHAR(20),
-    Prox_5 VARCHAR(20),
-    Prox_6 VARCHAR(20),
-    Prox_7 VARCHAR(20),
-    Prox_8 VARCHAR(20),
-    Prox_9 VARCHAR(20),
-    Prox_10 VARCHAR(20)
+DROP TABLE IF EXISTS proc_db.material_proximity;
+CREATE TABLE proc_db.material_proximity (
+    material_id VARCHAR(255) NOT NULL PRIMARY KEY,
+    similar_1 VARCHAR(255),
+    similar_2 VARCHAR(255),
+    similar_3 VARCHAR(255),
+    similar_4 VARCHAR(255),
+    similar_5 VARCHAR(255),
+    similar_6 VARCHAR(255),
+    similar_7 VARCHAR(255),
+    similar_8 VARCHAR(255),
+    similar_9 VARCHAR(255),
+    similar_10 VARCHAR(255)
 );
 
