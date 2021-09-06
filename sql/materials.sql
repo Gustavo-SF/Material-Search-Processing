@@ -1,4 +1,4 @@
-SELECT TOP 5000
+SELECT
     material_id,
     material_description
 FROM

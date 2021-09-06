@@ -28,10 +28,10 @@ parser.add_argument(
     "--load-csv", action="store_true", help="Load data from current working directory."
 )
 args = parser.parse_args()
-dbcon = DB_Connection()
 if not args.load_csv:
     # Get data from SQL DB
     sqlfile = os.path.join("sql", "materials.sql")
+    dbcon = DB_Connection()
     dataframe = dbcon.get_data(sql_file=sqlfile)
 
     logging.info("Dataframe loaded")
@@ -137,6 +137,7 @@ else:
 logging.info("Data is ready!")
 
 createtable_file = os.path.join("sql", "create_table.sql")
+dbcon = DB_Connection()
 dbcon.run_query(sql_file=createtable_file)
 
 logging.info("Created new table")

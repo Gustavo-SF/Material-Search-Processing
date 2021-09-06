@@ -20,3 +20,20 @@ INFO - 2021-09-03 15:07:26,789 - Executed query successfully
 INFO - 2021-09-03 15:07:26,790 - Created new table
 INFO - 2021-09-03 15:08:25,824 - Loaded data into SQL Server successfully
 INFO - 2021-09-03 15:08:25,824 - Loaded data into new table
+INFO - 2021-09-06 09:57:49,645 - Loaded all secrets into memory
+INFO - 2021-09-06 09:58:16,072 - Loaded all secrets into memory
+INFO - 2021-09-06 10:00:29,994 - Loaded all secrets into memory
+INFO - 2021-09-06 10:00:41,602 - Established connection with the DB
+INFO - 2021-09-06 10:00:47,241 - Dataframe loaded
+INFO - 2021-09-06 10:00:47,439 - Transformation done
+INFO - 2021-09-06 10:01:22,678 - Cleaning text done
+INFO - 2021-09-06 10:01:24,517 - Starting Multiprocessing
+INFO - 2021-09-06 12:19:20,735 - Starting to process with KNN
+INFO - 2021-09-06 12:21:11,512 - Data is ready!
+INFO - 2021-09-06 12:23:53,877 - Loaded all secrets into memory
+INFO - 2021-09-06 12:23:54,777 - Established connection with the DB
+INFO - 2021-09-06 12:23:55,011 - Data is ready!
+INFO - 2021-09-06 12:23:55,176 - Executed query successfully
+INFO - 2021-09-06 12:23:55,177 - Created new table
+INFO - 2021-09-06 12:41:45,680 - Loaded data into SQL Server successfully
+INFO - 2021-09-06 12:41:45,680 - Loaded data into new table

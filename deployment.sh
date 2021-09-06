@@ -1,4 +1,7 @@
 #!/bin/bash
+#
+# Bash deployment file for creating the virtual machine
+# and deploying the material multiprocessing code.
 
 az vm create \
     --name "material_processor" \
